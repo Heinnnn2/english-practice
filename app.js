@@ -2,6 +2,7 @@ let currentQuestion = 0
 let correct = 0
 
 function loadQuestion() {
+  document.getElementById("questionNumber").innerText = `第 ${currentQuestion + 1} 題 / 共 ${questions.length} 題`
   const q = questions[currentQuestion]
   const optionsDiv = document.getElementById("options")
   
@@ -52,6 +53,7 @@ function checkFill(answer){
     if (answer === q.answer){
         currentQuestion++
         correct++
+        document.getElementById("score").innerText = `答對：${correct} / ${questions.length} 題`
         if(currentQuestion >= questions.length){
             document.getElementById("result").innerText = `已完成所有題目！ 答對了 ${correct} 題 ， 共 ${questions.length} 題`
         }
@@ -84,6 +86,7 @@ function checkAnswer(selected) {
   if (selected === q.answer) {
     currentQuestion++
     correct++
+    document.getElementById("score").innerText = `答對：${correct} / ${questions.length} 題`
     if(currentQuestion >= questions.length){
         document.getElementById("result").innerText = `已完成所有題目！ 答對了 ${correct} 題 ， 共 ${questions.length} 題`}
     else{
