@@ -54,7 +54,6 @@ h1 {
 .progress-wrap { flex: 1; height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; }
 .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), #7c9ff7); border-radius: 99px; width: 0%; transition: width 0.4s ease; }
 
-/* Question Card */
 .question-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -68,7 +67,6 @@ h1 {
 #question { font-size: 18px; font-weight: 500; color: var(--text); line-height: 1.6; }
 #question .chinese { font-size: 14px; color: var(--text-light); margin-top: 10px; font-weight: 400; }
 
-/* Options */
 .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
 
 .options button {
@@ -88,23 +86,10 @@ h1 {
   animation: fadeSlideIn 0.25s ease both;
 }
 
-.options button:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79,110,247,0.15); }
+.options button:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+.options button.correct { background: #f0fdf4; border-color: var(--success); color: var(--success); animation: popCorrect 0.4s ease; }
+.options button.wrong { background: #fef2f2; border-color: var(--error); color: var(--error); animation: popWrong 0.3s ease; }
 
-.options button.correct {
-  background: #f0fdf4;
-  border-color: var(--success);
-  color: var(--success);
-  animation: popCorrect 0.4s ease;
-}
-
-.options button.wrong {
-  background: #fef2f2;
-  border-color: var(--error);
-  color: var(--error);
-  animation: popWrong 0.3s ease;
-}
-
-/* Input */
 .options input {
   width: 100%;
   padding: 14px 20px;
@@ -118,7 +103,6 @@ h1 {
   color: var(--text);
   outline: none;
   transition: border-color 0.15s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .options input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,110,247,0.1); }
@@ -139,9 +123,8 @@ h1 {
   margin-top: 4px;
 }
 
-.submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79,110,247,0.4); }
+.submit-btn:hover { transform: translateY(-1px); }
 
-/* Result */
 .result { border-radius: 12px; padding: 0; font-size: 15px; font-weight: 600; transition: all 0.2s ease; }
 .result.show { padding: 14px 18px; animation: fadeSlideIn 0.2s ease; }
 .result.success { background: #f0fdf4; color: var(--success); border: 1.5px solid #bbf7d0; }
@@ -159,22 +142,21 @@ h1 {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.15s;
 }
 
-.next-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
-/* Complete */
+/* Complete Screen */
 .complete { text-align: center; padding: 20px 0; animation: fadeSlideIn 0.4s ease; }
 .complete .emoji { font-size: 56px; margin-bottom: 16px; }
 .complete h2 { font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
 .complete .score-big { font-family: 'Nunito', sans-serif; font-size: 48px; font-weight: 800; color: var(--primary); margin: 12px 0; }
-.complete p { color: var(--text-light); font-size: 15px; margin-bottom: 24px; }
+.complete p { color: var(--text-light); font-size: 15px; margin-bottom: 20px; }
+
+.btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
 
 .restart-btn {
-  padding: 14px 32px;
+  padding: 12px 24px;
   font-family: 'Nunito', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: white;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -185,16 +167,67 @@ h1 {
   transition: all 0.15s;
 }
 
-.restart-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(79,110,247,0.4); }
+.review-btn {
+  padding: 12px 24px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(239,68,68,0.3);
+  transition: all 0.15s;
+}
 
-/* ===== ANIMATIONS ===== */
+.restart-btn:hover, .review-btn:hover { transform: translateY(-2px); }
 
+/* Wrong Answer List */
+.wrong-list {
+  text-align: left;
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.wrong-list h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--error);
+  margin-bottom: 12px;
+}
+
+.wrong-list ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.wrong-list li {
+  background: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #fecaca;
+}
+
+.wrong-q {
+  display: block;
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.wrong-a {
+  display: block;
+  font-size: 13px;
+  color: var(--error);
+}
+
+/* Animations */
 @keyframes fadeSlideIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 答對：卡片往上彈 */
 @keyframes bounce {
   0%   { transform: translateY(0); }
   30%  { transform: translateY(-10px); }
@@ -202,7 +235,6 @@ h1 {
   100% { transform: translateY(0); }
 }
 
-/* 答錯：卡片左右搖 */
 @keyframes shake {
   0%   { transform: translateX(0); }
   15%  { transform: translateX(-8px); }
@@ -213,14 +245,12 @@ h1 {
   100% { transform: translateX(0); }
 }
 
-/* 正確選項閃光 */
 @keyframes popCorrect {
   0%   { transform: scale(1); }
   40%  { transform: scale(1.04); box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
   100% { transform: scale(1); }
 }
 
-/* 錯誤選項輕微震動 */
 @keyframes popWrong {
   0%   { transform: translateX(0); }
   25%  { transform: translateX(-4px); }
